@@ -6,6 +6,44 @@
 <title>Stefania Sangiorgio — Creative Director, Copywriter</title>
 <meta name="description" content="Stefania Sangiorgio, Creative Director and copywriter at LePub, Milan. Selected work.">
 <meta name="robots" content="noindex">
+<script>
+/* Porta d'accesso della bozza online (GitHub Pages): nome admin o stefania, password stefania.
+   In locale non c'è. Una volta entrati il browser lo ricorda per 30 giorni.
+   Finché non si entra la pagina si ferma qui: niente video, immagini o testi caricati. */
+(function () {
+  var K = 'ss-portfolio-accesso';
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
+  try { if (localStorage.getItem(K) === '1') return; } catch (e) {}
+  if (document.cookie.indexOf(K + '=1') > -1) return;
+  /* il resto della pagina diventa testo nascosto: nessuno script parte, nessun file si carica */
+  document.write('<plaintext style="display:none">');
+  var CSS = ''
+    + '*{box-sizing:border-box}html,body{height:100%}body{margin:0;display:grid;place-items:center;background:#fff;color:#0c0c0c;font:15px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding:24px}'
+    + 'form{width:min(320px,100%)}h1{margin:0 0 6px;font-size:15px;font-weight:400}p{margin:0 0 28px;color:#6e6e6a;font-size:13px}label{display:block;font-size:12px;color:#6e6e6a;margin:0 0 6px}'
+    + 'input{display:block;width:100%;margin:0 0 18px;padding:11px 0;border:0;border-bottom:1px solid #0c0c0c;border-radius:0;background:none;color:inherit;font:inherit;font-size:16px;outline:none;-webkit-appearance:none;appearance:none}'
+    + 'input:focus{border-bottom-width:2px;padding-bottom:10px}button{margin-top:10px;width:100%;padding:13px 16px;border:0;border-radius:0;background:#0c0c0c;color:#fff;font:inherit;font-size:13px;letter-spacing:.04em;cursor:pointer}'
+        + '.no{color:#b3261e;margin:-12px 0 20px;font-size:13px}';
+  var MODULO = '<form autocomplete="on"><h1>Stefania Sangiorgio</h1><p>Portfolio, bozza riservata.</p>'
+    + '<p class="no" role="alert" hidden>Nome o password non corretti.</p><label for="n">Nome</label><input id="n" name="nome" type="text" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required>'
+    + '<label for="p">Password</label><input id="p" name="password" type="password" autocomplete="current-password" required><button type="submit">Entra</button></form>';
+  document.addEventListener('DOMContentLoaded', function () {
+  document.title = 'Stefania Sangiorgio — Portfolio';
+  var st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
+  document.body.insertAdjacentHTML('afterbegin', MODULO);
+  var f = document.querySelector('form');
+  f.nome.focus();
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var n = f.nome.value.trim().toLowerCase();
+    if ((n === 'admin' || n === 'stefania') && f.password.value === 'stefania') {
+      try { localStorage.setItem(K, '1'); } catch (e) {}
+      document.cookie = K + '=1; Max-Age=2592000; Path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+      location.reload();
+    } else { f.querySelector('.no').hidden = false; f.password.value = ''; f.password.focus(); }
+  });
+  });
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300..700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet">
