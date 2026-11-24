@@ -1,0 +1,11 @@
+# Nel repository entra solo il sito e ciò che serve a pubblicarlo.
+# Note di lavoro, versioni, strumenti e appunti restano sul Mac.
+/*
+!/.gitignore
+!/sito/
+!/middleware.js
+!/package.json
+!/package-lock.json
+!/vercel.json
+.DS_Store
+node_modules/

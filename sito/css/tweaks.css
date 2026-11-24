@@ -1,0 +1,78 @@
+/* ------------------------------------------------------------------
+   Barra dei ritocchi — solo per la bozza (si toglie con tweaks.js).
+------------------------------------------------------------------- */
+.tw{
+  --tw-ink:#0c0c0c;--tw-mute:#8b8b88;--tw-line:#e6e6e2;--tw-paper:#fff;
+  position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:90;
+  font-family:"Host Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;line-height:1.4;color:var(--tw-ink);
+  -webkit-font-smoothing:antialiased;
+}
+.tw button{font:inherit;color:inherit;cursor:pointer}
+
+.tw-pill{
+  appearance:none;border:1px solid var(--tw-line);background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  padding:7px 12px;border-radius:99px;letter-spacing:.02em;opacity:.7;
+  transition:opacity .3s,background .3s;
+}
+.tw-pill:hover,.tw.open .tw-pill{opacity:1;background:#fff}
+.tw.open .tw-pill{display:none}
+
+.tw-panel{
+  position:absolute;right:0;bottom:0;width:320px;max-height:min(760px,calc(100vh - 90px));
+  display:flex;flex-direction:column;
+  background:var(--tw-paper);border:1px solid var(--tw-line);border-radius:12px;
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.28);overflow:hidden;
+}
+.tw-panel[hidden]{display:none}
+.tw-top{display:flex;align-items:baseline;gap:8px;padding:12px 14px;border-bottom:1px solid var(--tw-line)}
+.tw-top b{font-weight:500;font-size:12.5px}
+.tw-top span{color:var(--tw-mute)}
+.tw-x{appearance:none;border:0;background:none;margin-left:auto;padding:0;color:var(--tw-mute) !important}
+.tw-x:hover{color:var(--tw-ink) !important}
+
+.tw-body{overflow:auto;overscroll-behavior:contain;padding:4px 14px 10px}
+.tw-g{border:0;margin:0;padding:10px 0 4px;min-width:0}
+.tw-g + .tw-g{border-top:1px solid var(--tw-line)}
+.tw-g legend{padding:0;margin-bottom:6px;color:var(--tw-mute);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+
+.tw-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:2px 14px;padding:7px 0;cursor:pointer}
+.tw-l{font-size:12px;text-wrap:pretty}
+.tw-row output{color:var(--tw-mute);font-variant-numeric:tabular-nums;text-align:right;font-size:11.5px;white-space:nowrap}
+.tw-row input[type="range"]{grid-column:1 / -1;width:100%;margin:6px 0 0;accent-color:var(--tw-ink);height:18px}
+
+/* interruttore */
+.tw-sw{grid-template-columns:1fr auto;align-items:center}
+.tw-sw input{position:absolute;opacity:0;width:1px;height:1px}
+.tw-sw i{position:relative;width:30px;height:18px;border-radius:99px;background:var(--tw-line);transition:background .25s}
+.tw-sw i::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s}
+.tw-sw input:checked + i{background:var(--tw-ink)}
+.tw-sw input:checked + i::after{transform:translateX(12px)}
+.tw-sw input:focus-visible + i{outline:1px solid var(--tw-ink);outline-offset:2px}
+
+/* scelta fra due valori */
+.tw-ch{cursor:default}
+.tw-seg{grid-column:1 / -1;display:flex;margin-top:7px;padding:2px;border:1px solid var(--tw-line);border-radius:99px}
+.tw-seg label{flex:1;position:relative;cursor:pointer}
+.tw-seg input{position:absolute;opacity:0;width:1px;height:1px}
+.tw-seg span{display:block;padding:6px 8px;border-radius:99px;text-align:center;font-size:11.5px;color:var(--tw-mute);transition:background .25s,color .25s}
+.tw-seg input:checked + span{background:var(--tw-ink);color:#fff}
+.tw-seg input:focus-visible + span{outline:1px solid var(--tw-ink);outline-offset:2px}
+
+.tw-foot{display:flex;gap:8px;padding:10px 14px 12px;border-top:1px solid var(--tw-line)}
+.tw-b{appearance:none;flex:1;border:1px solid var(--tw-line);background:none;padding:8px 10px;border-radius:99px;transition:background .25s,color .25s,border-color .25s}
+.tw-b:hover{border-color:var(--tw-ink)}
+.tw-main{background:var(--tw-ink);border-color:var(--tw-ink);color:#fff !important}
+.tw-main:hover{background:#333}
+.tw-out{margin:0 14px 12px;height:120px;font:11px/1.4 ui-monospace,Menlo,monospace;border:1px solid var(--tw-line);border-radius:8px;padding:8px;resize:vertical}
+.tw-out[hidden]{display:none}
+
+/* telefono: la barra diventa un foglio in basso, comoda col dito */
+@media (max-width:600px){
+  .tw-panel{position:fixed;left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));width:auto;max-height:62vh}
+  .tw-row{padding:9px 0}
+  .tw-row input[type="range"]{height:28px}
+  .tw-sw i{width:36px;height:22px}
+  .tw-sw i::after{width:18px;height:18px}
+  .tw-sw input:checked + i::after{transform:translateX(14px)}
+}
